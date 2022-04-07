@@ -1,4 +1,5 @@
-# CST-438-Project-03-Website
+# Easel Web App
+### A class and assignment tracking app
 
 Collaborators
 1. Marcos Orozco Silva - MarcosOS98
@@ -21,3 +22,12 @@ Room Databases tutorial - https://www.youtube.com/watch?v=qO56SL856xc&list=PLdHg
 
 Retrofit:
 https://guides.codepath.com/android/consuming-apis-with-retrofit
+
+Springboot:
+https://spring.io/projects/spring-boot
+
+Thymeleaf:
+https://www.thymeleaf.org/
+
+Heroku:
+https://www.heroku.com/
