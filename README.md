@@ -1,4 +1,4 @@
-# cst438_project_03_Web
+# CST-438-Project-03-Website
 
 Collaborators
 1. Marcos Orozco Silva - MarcosOS98
