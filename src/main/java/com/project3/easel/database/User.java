@@ -17,14 +17,13 @@ public class User {
     private String password;
     private Boolean isProf;
     @OneToMany
-    private List<Class> classes;
+    private List<Course> courses;
 
     public User() {
 
     }
 
-    public User(Integer userId, String firstName, String lastName, String username, String password, Boolean isProf) {
-        this.userId = userId;
+    public User(String firstName, String lastName, String username, String password, Boolean isProf) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -80,12 +79,12 @@ public class User {
         isProf = prof;
     }
 
-    public List<Class> getClasses() {
-        return classes;
+    public List<Course> getClasses() {
+        return courses;
     }
 
-    public void setClasses(List<Class> classes) {
-        this.classes = classes;
+    public void setClasses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
@@ -97,7 +96,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isProf=" + isProf +
-                ", classes=" + classes +
+                ", courses=" + courses +
                 '}';
     }
 }
