@@ -5,13 +5,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userId", nullable = false)
     private Integer userId;
 
+    @Column(name = "firstName", nullable = false)
     private String firstName;
+
+
     private String lastName;
     private String username;
     private String password;
