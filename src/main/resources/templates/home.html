@@ -11,15 +11,15 @@
 <br>
 <div th:if="!${user.getProf()}">
   <table th:if="${user.courses.size() > 0}" title="Current Courses">
-    <tr th:each="course in ${user.courses}">
-      <td th:text="course.courseName">
-        <button th:onclick="window.location.href='/viewCourse?courseId='+course.courseId">View Course</button>
+    <tr th:each="course: ${user.courses}">
+      <td>
+        <a th:text="${course.courseName}" th:href="'/viewCourse?courseId=' + ${course.courseId}"></a>
       </td>
-      <td th:text="'Professor: ' + course.professor">
+      <td th:text="'Professor: ' + ${course.professor}">
       </td>
-      <td th:if="course.assignments != null" th:each="assignment in course.assignments">
-        <a th:text="assignment.assignmentName" th:href="|window.location.href='/viewAssignment?assignmentId='+assignment.assignmentId"></a>
-        <span th:text="assignment.dueDate"></span>
+      <td th:if="${course.assignments.size() > 0}" th:each="assignment: ${course.assignments}">
+        <a th:text="${assignment.assignmentName}" th:href="'/viewAssignment?assignmentId=' + ${assignment.assignmentId}"></a>
+        <span th:text="${assignment.dueDate}"></span>
       </td>
     </tr>
   </table>

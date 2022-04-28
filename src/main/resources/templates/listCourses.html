@@ -6,12 +6,16 @@
 </head>
 <body>
     <table title="Select a Course to Add">
-        <tr th:each="course in ${courses}">
-            <td th:text="course.courseName"></td>
-            <td th:text="course.courseTime"></td>
-            <td th:text="course.professor"></td>
-            <td th:if="course not in ${user.courses}">
-                <button th:onclick="window.location.href='/api/addCourseToUser?userId='+${user.userId}+'courseId='+${course.courseId}">Add Course</button>
+        <tr th:each="course: ${courses}">
+            <td th:text="${course.getCourseName()}"></td>
+            <td th:text="${course.getCourseTime()}"></td>
+            <td th:text="${course.getProfessor()}"></td>
+            <td th:if="${!#lists.contains(user.courses, course)}">
+                <form action="/api/addCourseToUser" method="Post">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <input type="hidden" name="courseId" th:value="${course.courseId}">
+                    <input type="submit" value="Add Course">
+                </form>
             </td>
         </tr>
     </table>
