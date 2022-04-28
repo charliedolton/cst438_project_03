@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Easel</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
+
+
 <body>
-  <h1>Easel</h1>
+
+  <h1><Strong>Easel</Strong></h1>
+
   <br>
-    <button th:href="|window.location.href='/login'|">Log In</button>
-    <button th:href="|window.location.href='/signup'|">Sign Up</button>
+
+  <form th:action ="@{/login}">
+      <button class="button" style="vertical-align: middle"><span>Log In</span></button>
+  </form>
+
+
+  <form  th:action="@{/signup}">
+      <button class="button" style="vertical-align: middle"><span>Sign up</span></button>
+  </form>
+
 </body>
+
+
 </html>

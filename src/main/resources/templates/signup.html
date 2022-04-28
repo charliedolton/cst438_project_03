@@ -8,14 +8,39 @@
 <h1>Sign Up</h1>
 <br>
 <form method="post" action="/api/createUser">
-    <input name="firstName" type="text" placeholder="firstName">
-    <input name="lastName" type="text" placeholder="lastName">
-    <input name="username" type="text" placeholder="Username">
-    <input name="password" type="password" placeholder="Password">
+    <table>
+        <tr>
+            <td><h4>First Name: </h4></td>
+          <td><h4> <input class="w3-input w3-border" name="firstName" type="text" placeholder="firstName"> </h4></td>
+        </tr>
+
+   <tr>
+       <td><h4>Last Name: </h4></td>
+       <td><h4> <input class="w3-input w3-border" name="lastName" type="text" placeholder="lastName"> </h4></td>
+
+   </tr>
+
+
+    <tr>
+        <td><h4>Username: </h4></td>
+       <td><h4><input class="w3-input w3-border" name="username" type="text" placeholder="Username"> </h4></td>
+    </tr>
+
+
+    <tr>
+        <td><h4>Password: </h4></td>
+        <td><h4> <input name="password" type="password" placeholder="Password"> </h4></td>
+
+    </tr>
+
+
     <input name="passwordCheck" type="password" placeholder="Please type password again">
+
+
     <input name="isProf" id="isProf" type="checkbox" value="true">
     <label for="isProf">Are you a professor?</label>
     <input type="submit" value="Sign Up!">
+    </table>
 </form>
 </body>
 </html>
