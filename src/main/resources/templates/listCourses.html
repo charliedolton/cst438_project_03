@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table title="Select a Course to Add">
+        <tr th:each="course in ${courses}">
+            <td th:text="course.courseName"></td>
+            <td th:text="course.courseTime"></td>
+            <td th:text="course.professor"></td>
+            <td th:if="course not in ${user.courses}">
+                <button th:onclick="window.location.href='/api/addCourseToUser?userId='+${user.userId}+'courseId='+${course.courseId}">Add Course</button>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

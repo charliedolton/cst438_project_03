@@ -79,11 +79,11 @@ public class User {
         isProf = prof;
     }
 
-    public List<Course> getClasses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setClasses(List<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 
