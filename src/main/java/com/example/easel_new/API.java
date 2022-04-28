@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/api")
 public class API {
@@ -37,19 +39,27 @@ public class API {
         return "redirect:/userAdded";
     }
 
-//    @RequestMapping("/checkUser")
-//    public String checkUser(@RequestParam String username,
-//                            @RequestParam String password) {
-//        User user = userRepository.findUserByUsername(username);
-//        if (user.getPassword().equals(password)) {
-//            HttpS
-//        }
-//    }
+    @RequestMapping("/getUser")
+    public @ResponseBody
+    User getUser(@RequestParam Integer userId){
+        return userRepository.findUserByUserId(userId);
+    }
 
     //course API routes
     @RequestMapping("/getAllCourses")
     public @ResponseBody Iterable<Course> getAllCourses() {
         return courseRepository.findAll();
+    }
+
+    @PostMapping("/addCourseToUser")
+    public String addCourseToUser(@RequestParam Integer userId,
+                                  @RequestParam Integer courseId) {
+        User user = userRepository.findUserByUserId(userId);
+        List<Course> courseList = user.getCourses();
+        Course newCourse = courseRepository.findCourseByCourseId(courseId);
+        courseList.add(newCourse);
+        user.setCourses(courseList);
+        return "redirect:/home";
     }
 
     //assignment API routes

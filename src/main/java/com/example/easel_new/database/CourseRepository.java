@@ -9,4 +9,5 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     Course findCourseByCourseId(Integer classId);
     Course findCourseByCourseName(String className);
     List<Course> findCoursesByProfessor(String professor);
+    List<Course> findAll();
 }

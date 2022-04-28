@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
@@ -36,9 +36,14 @@
 
     <input name="passwordCheck" type="password" placeholder="Please type password again">
 
+    <select name="isProf" id="isProf">
+        <option>false</option>
+        <option>true</option>
+    </select>
+    <label for="isProf">I am a professor:</label>
 
-    <input name="isProf" id="isProf" type="checkbox" value="true">
-    <label for="isProf">Are you a professor?</label>
+
+    
     <input type="submit" value="Sign Up!">
     </table>
 </form>

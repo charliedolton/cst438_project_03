@@ -1,9 +1,6 @@
 package com.example.easel_new;
 
-import com.example.easel_new.database.AssignmentRepository;
-import com.example.easel_new.database.CourseRepository;
-import com.example.easel_new.database.User;
-import com.example.easel_new.database.UserRepository;
+import com.example.easel_new.database.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -40,18 +37,23 @@ public class EaselNewApplication {
 
     @RequestMapping("/login")
     public String login(Model model, HttpSession session) {
+        String response = "Please enter you username and password";
+        model.addAttribute("response", response);
         return "login";
     }
 
     @PostMapping("/login")
     public String checkUser(@RequestParam String username,
                             @RequestParam String password,
-                            HttpServletRequest sessionLink) {
+                            HttpServletRequest sessionLink,
+                            Model model) {
         User curUser = userRepository.findUserByUsername(username);
         System.out.println(curUser.getUsername());
         List<String> sessionVar = new ArrayList<>();
         if (curUser == null) {
-            return "Username or Password is incorrect!";
+            String response = "Username or Password is incorrect!";
+            model.addAttribute("response", response);
+            return "/login";
         }
 
         if (curUser.getPassword().equals(password)) {
@@ -59,7 +61,9 @@ public class EaselNewApplication {
             sessionLink.getSession().setAttribute("user", sessionVar);
             return "redirect:/home";
         } else {
-            return "Username or Password is incorrect!";
+            String response = "Username or Password is incorrect!";
+            model.addAttribute("response", response);
+            return "/login";
         }
     }
 
@@ -70,16 +74,29 @@ public class EaselNewApplication {
 
     @RequestMapping("/home")
     public String home(Model model, HttpSession session) {
-        String username = ((List<String>)session.getAttribute("user")).get(0);
-        User user = userRepository.findUserByUsername(username);
-        System.out.println(username);
+        User user = getUserFromSession(session);
         model.addAttribute("user", user);
         return "home";
+    }
+
+    @RequestMapping("/listCourses")
+    public String listCourses(Model model, HttpSession session) {
+        User user = getUserFromSession(session);
+        List<Course> courses = courseRepository.findAll();
+        model.addAttribute("user", user);
+        model.addAttribute("courses", courses);
+        return "/listCourses";
     }
 
     @RequestMapping("/userAdded")
     public String userAdded(Model model, HttpSession session) {
         return "userAdded";
+    }
+
+    public User getUserFromSession(HttpSession session) {
+        String username = ((List<String>)session.getAttribute("user")).get(0);
+        User user = userRepository.findUserByUsername(username);
+        return user;
     }
 
 

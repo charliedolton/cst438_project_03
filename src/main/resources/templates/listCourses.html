@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table title="Select a Course to Add">
+        <tr th:each="course: ${courses}">
+            <td th:text="${course.getCourseName()}"></td>
+            <td th:text="${course.getCourseTime()}"></td>
+            <td th:text="${course.getProfessor()}"></td>
+            <td th:if="${!#lists.contains(user.courses, course)}">
+                <form action="/api/addCourseToUser" method="Post">
+                    <input type="hidden" name="userId" th:value="${user.userId}">
+                    <input type="hidden" name="courseId" th:value="${course.courseId}">
+                    <input type="submit" value="Add Course">
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
