@@ -21,8 +21,7 @@ public class Course {
 
     }
 
-    public Course(Integer classId, String className, String classTime, String professor) {
-        this.courseId = classId;
+    public Course(String className, String classTime, String professor) {
         this.courseName = className;
         this.courseTime = classTime;
         this.professor = professor;

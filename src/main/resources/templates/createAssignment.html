@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Assignment</title>
 </head>
 <body>
+<h2>Create Assignment</h2>
+<form action="/api/createAssignment" method="post">
+    <input type="text" name="assignmentName" placeholder="Enter Assignment Name">
+    <select name="courseId">
+        <option>Select Class</option>
+        <option th:each="course: ${user.courses}" th:text="${course.courseName}" th:value="${course.courseId}"></option>
+    </select>
+    <input type="text" name="assignmentDescription" placeholder="Enter Assignment Description">
+    <input type="text" name="dueDate" placeholder="Enter Assignment Due Date">
+    <input type="submit" value="Create Assignment">
+</form>
 
 </body>
 </html>

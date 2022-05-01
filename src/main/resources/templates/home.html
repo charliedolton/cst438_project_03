@@ -10,12 +10,17 @@
 <h2 th:text="${user.firstName} + ' ' + ${user.lastName}"></h2>
 <br>
 <div th:if="!${user.getProf()}">
-  <table th:if="${user.courses.size() > 0}" title="Current Courses">
+  <table th:if="${user.courses.size() > 0}">
+    <tr>
+      <th>Course</th>
+      <th>Professor</th>
+      <th>Assignments</th>
+    </tr>
     <tr th:each="course: ${user.courses}">
       <td>
         <a th:text="${course.courseName}" th:href="'/viewCourse?courseId=' + ${course.courseId}"></a>
       </td>
-      <td th:text="'Professor: ' + ${course.professor}">
+      <td th:text="${course.professor}">
       </td>
       <td th:if="${course.assignments.size() > 0}" th:each="assignment: ${course.assignments}">
         <a th:text="${assignment.assignmentName}" th:href="'/viewAssignment?assignmentId=' + ${assignment.assignmentId}"></a>
@@ -23,9 +28,29 @@
       </td>
     </tr>
   </table>
+  <br>
+  <br>
+  <button th:onclick="|window.location.href='/listCourses'|">Add Classes</button>
 </div>
 <div th:if="${user.getProf()}">
-  <h4>This is where the professor stuff goes</h4>
+  <table th:if="${user.courses.size() > 0}">
+    <tr>
+      <th>Course</th>
+      <th>Assignments</th>
+    </tr>
+    <tr th:each="course: ${user.courses}">
+      <td>
+        <a th:text="${course.courseName}" th:href="'/viewCourse?courseId=' + ${course.courseId}"></a>
+      </td>
+      <td th:each="assignment: ${course.assignments}">
+        <a th:text="${assignment.assignmentName}" th:href="'/viewAssignment?assignmentId=' + ${assignment.assignmentId}"></a>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <button th:onclick="|window.location.href='/createCourse'|">Create a New Course</button>
+  <button th:onclick="|window.location.href='/createAssignment'|">Create Assignment</button>
 </div>
 <br>
 
