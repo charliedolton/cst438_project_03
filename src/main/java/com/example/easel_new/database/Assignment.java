@@ -22,8 +22,7 @@ public class Assignment {
 
     }
 
-    public Assignment(Integer assignmentId, String assignmentName, String assignmentDescription, String dueDate, Boolean isComplete) {
-        this.assignmentId = assignmentId;
+    public Assignment(String assignmentName, String assignmentDescription, String dueDate, Boolean isComplete) {
         this.assignmentName = assignmentName;
         this.assignmentDescription = assignmentDescription;
         this.dueDate = dueDate;

@@ -10,4 +10,5 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     Course findCourseByCourseName(String className);
     List<Course> findCoursesByProfessor(String professor);
     List<Course> findAll();
+    Course findCourseByAssignmentsContains(Assignment assignment);
 }

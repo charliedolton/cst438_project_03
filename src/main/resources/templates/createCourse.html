@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Class</title>
+</head>
+<body>
+
+<h2>Create a Course</h2>
+
+<form action="/api/createCourse" method="post">
+    <input type="text" name="courseName" placeholder="Enter Class Name">
+    <input type="text" name="courseTime" placeholder="Enter Class Time">
+    <input type="hidden" name="userId" th:value="${user.userId}">
+    <input type="submit" value="Create Course">
+</form>
+
+</body>
+</html>

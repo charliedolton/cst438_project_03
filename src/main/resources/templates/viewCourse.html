@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>View Course</title>
+</head>
+<body>
+<h2 th:text="'Viewing Course ' + ${course.courseName}"></h2>
+<br>
+<br>
+<table>
+    <tr>
+        <th>Course Time: </th>
+        <th>Taught By: </th>
+        <th>Assignments: </th>
+    </tr>
+    <tr>
+        <td th:text="${course.courseTime}"></td>
+        <td th:text="${course.professor}"></td>
+        <td th:each="assignment: ${course.assignments}">
+            <a th:text="${assignment.assignmentName}" th:href="'/viewAssignment?assignmentId=' + ${assignment.assignmentId}"></a>
+        </td>
+    </tr>
+</table>
+
+<form action="/api/deleteCourse">
+    <input type="hidden" name="courseId" th:value="${course.courseId}">
+    <input type="submit" value="Delete Course">
+</form>
+
+<a href="/home">Return to Homepage</a>
+
+</body>
+</html>

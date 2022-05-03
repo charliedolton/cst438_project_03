@@ -88,6 +88,38 @@ public class EaselNewApplication {
         return "/listCourses";
     }
 
+    @RequestMapping("/createCourse")
+    public String createCourse(Model model, HttpSession session) {
+        User user = getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "/createCourse";
+    }
+
+    @RequestMapping("/createAssignment")
+    public String createAssignment(Model model, HttpSession session) {
+        User user = getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "/createAssignment";
+    }
+
+    @RequestMapping("/viewAssignment")
+    public String viewAssignment(Model model, HttpSession session,
+                                 @RequestParam Integer assignmentId) {
+        Assignment assignment = assignmentRepository.findAssignmentByAssignmentId(assignmentId);
+        Course course = courseRepository.findCourseByAssignmentsContains(assignment);
+        model.addAttribute("assignment", assignment);
+        model.addAttribute("course", course);
+        return "/viewAssignment";
+    }
+
+    @RequestMapping("/viewCourse")
+    public String viewCourse(Model model, HttpSession session,
+                             @RequestParam Integer courseId) {
+        Course course = courseRepository.findCourseByCourseId(courseId);
+        model.addAttribute("course", course);
+        return "/viewCourse";
+    }
+
     @RequestMapping("/userAdded")
     public String userAdded(Model model, HttpSession session) {
         return "userAdded";
