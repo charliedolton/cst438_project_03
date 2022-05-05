@@ -16,7 +16,7 @@ public class User {
     private String username;
     private String password;
     private Boolean isProf;
-    @OneToMany
+    @ManyToMany
     private List<Course> courses;
 
     public User() {

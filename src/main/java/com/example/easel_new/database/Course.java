@@ -14,7 +14,7 @@ public class Course {
     private String courseName;
     private String courseTime;
     private String professor;
-    @OneToMany
+    @ManyToMany
     private List<Assignment> assignments;
 
     public Course() {

@@ -22,18 +22,26 @@
         <td th:text="${assignment.getComplete()}"></td>
     </tr>
 
-    <form action="/api/completeAssignment" method="post">
+    <form th:if="${user.getProf()}" action="/editAssignment">
+        <input type="hidden" name="assignmentId" th:value="${assignment.assignmentId}">
+        <input type="submit" value="Edit Assignment">
+    </form>
+    <br>
+    <br>
+
+    <form th:if="${user.getProf()}" action="/api/completeAssignment" method="post">
         <input type="hidden" name="assignmentId" th:value="${assignment.assignmentId}">
         <input th:if="!${assignment.getComplete()}" type="submit" value="Mark Assignment as Finished">
         <input th:if="${assignment.getComplete()}" type="submit" value="Mark Assignment as Unfinished">
     </form>
     <br>
     <br>
-    <form action="/api/deleteAssignment" method="post">
+    <form th:if="${user.getProf()}" action="/api/deleteAssignment" method="post">
         <input type="hidden" name="assignmentId" th:value="${assignment.assignmentId}">
         <input type="submit" value="Delete Assignment">
     </form>
-
+    <br>
+    <br>
     <a href="/home">Return to Homepage</a>
 </table>
 

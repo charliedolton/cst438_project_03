@@ -4,10 +4,7 @@ import com.example.easel_new.database.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,10 +37,25 @@ public class API {
         return "redirect:/userAdded";
     }
 
-    @RequestMapping("/getUser")
+    @RequestMapping("/getUserByUserId")
     public @ResponseBody
-    User getUser(@RequestParam Integer userId){
+    User getUserByUserId(@RequestParam Integer userId){
         return userRepository.findUserByUserId(userId);
+    }
+
+    @PostMapping("/editUser")
+    public String editUser(@RequestParam Integer userId,
+                           @RequestParam String username,
+                           @RequestParam String firstName,
+                           @RequestParam String lastName,
+                           @RequestParam String password) {
+        User user = userRepository.findUserByUserId(userId);
+        user.setUsername(username);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        userRepository.save(user);
+        return "redirect:/home";
     }
 
     //course API routes
@@ -77,10 +89,28 @@ public class API {
         return "redirect:/home";
     }
 
+    @RequestMapping("/getCourseByCourseId")
+    public @ResponseBody Course getCourseByCourseId(@RequestParam Integer courseId) {
+        return courseRepository.findCourseByCourseId(courseId);
+    }
+
     @PostMapping("/deleteCourse")
     public String deleteCourse(@RequestParam Integer courseId) {
         Course course = courseRepository.findCourseByCourseId(courseId);
         courseRepository.delete(course);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/editCourse")
+    public String editCourse(@RequestParam Integer courseId,
+                             @RequestParam String courseName,
+                             @RequestParam String courseTime,
+                             @RequestParam String professor) {
+        Course course = courseRepository.findCourseByCourseId(courseId);
+        course.setCourseName(courseName);
+        course.setCourseTime(courseTime);
+        course.setProfessor(professor);
+        courseRepository.save(course);
         return "redirect:/home";
     }
 
@@ -124,5 +154,21 @@ public class API {
         return "redirect:/home";
     }
 
+    @RequestMapping("/getAssignmentByAssignmentId")
+    public @ResponseBody Assignment getAssignmentByAssignmentId(@RequestParam Integer assignmentId) {
+        return assignmentRepository.findAssignmentByAssignmentId(assignmentId);
+    }
 
+    @PostMapping("/editAssignment")
+    public String editAssignment(@RequestParam Integer assignmentId,
+                                 @RequestParam String assignmentName,
+                                 @RequestParam String assignmentDescription,
+                                 @RequestParam String dueDate) {
+        Assignment assignment = assignmentRepository.findAssignmentByAssignmentId(assignmentId);
+        assignment.setAssignmentName(assignmentName);
+        assignment.setAssignmentDescription(assignmentDescription);
+        assignment.setDueDate(dueDate);
+        assignmentRepository.save(assignment);
+        return "redirect:/home";
+    }
 }
