@@ -91,6 +91,9 @@ public class EaselNewApplication {
     @RequestMapping("/createCourse")
     public String createCourse(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (!(user.getProf())) {
+            return "/home";
+        }
         model.addAttribute("user", user);
         return "/createCourse";
     }
@@ -98,6 +101,9 @@ public class EaselNewApplication {
     @RequestMapping("/createAssignment")
     public String createAssignment(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (!(user.getProf())) {
+            return "/home";
+        }
         model.addAttribute("user", user);
         return "/createAssignment";
     }
@@ -105,8 +111,10 @@ public class EaselNewApplication {
     @RequestMapping("/viewAssignment")
     public String viewAssignment(Model model, HttpSession session,
                                  @RequestParam Integer assignmentId) {
+        User user = getUserFromSession(session);
         Assignment assignment = assignmentRepository.findAssignmentByAssignmentId(assignmentId);
         Course course = courseRepository.findCourseByAssignmentsContains(assignment);
+        model.addAttribute("user", user);
         model.addAttribute("assignment", assignment);
         model.addAttribute("course", course);
         return "/viewAssignment";
@@ -115,9 +123,42 @@ public class EaselNewApplication {
     @RequestMapping("/viewCourse")
     public String viewCourse(Model model, HttpSession session,
                              @RequestParam Integer courseId) {
+        User user = getUserFromSession(session);
         Course course = courseRepository.findCourseByCourseId(courseId);
+        model.addAttribute("user", user);
         model.addAttribute("course", course);
         return "/viewCourse";
+    }
+
+    @RequestMapping("/editUser")
+    public String editUser(Model model, HttpSession session) {
+        User user = getUserFromSession(session);
+        model.addAttribute("user", user);
+        return "/editUser";
+    }
+
+    @RequestMapping("/editCourse")
+    public String editCourse(Model model, HttpSession session,
+                             @RequestParam Integer courseId) {
+        User user = getUserFromSession(session);
+        if (!(user.getProf())) {
+            return "/home";
+        }
+        Course course = courseRepository.findCourseByCourseId(courseId);
+        model.addAttribute("course", course);
+        return "editCourse";
+    }
+
+    @RequestMapping("/editAssignment")
+    public String editAssignment(Model model, HttpSession session,
+                                 @RequestParam Integer assignmentId) {
+        User user = getUserFromSession(session);
+        if (!(user.getProf())) {
+            return "/home";
+        }
+        Assignment assignment = assignmentRepository.findAssignmentByAssignmentId(assignmentId);
+        model.addAttribute("assignmnet", assignment);
+        return "editAssignment";
     }
 
     @RequestMapping("/userAdded")

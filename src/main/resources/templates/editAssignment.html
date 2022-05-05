@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Assignment</title>
+</head>
+<body>
+
+<h2 th:text="'Edit Assignment: ' + ${assignmnet.assignmentName}"></h2>
+
+<form action="/api/editAssignment" method="post">
+    <input type="hidden" th:value="${assignmnet.assignmentId}" name="assignmentId">
+    <input type="text" text="Assignment Name: " th:value="${assignmnet.assignmentName}" name="assignmentName">
+    <input type="text" text="Assignment Description: " th:value="${assignmnet.assignmentDescription}" name="assignmentDescription">
+    <input type="text" text="Due Date: " th:value="${assignmnet.dueDate}" name="dueDate">
+    <input type="submit" value="Submit Changes">
+</form>
+
+<a href="/home">Return to home page</a>
+
+</body>
+</html>
