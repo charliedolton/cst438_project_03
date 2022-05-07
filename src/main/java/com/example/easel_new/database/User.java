@@ -2,6 +2,8 @@ package com.example.easel_new.database;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -11,10 +13,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
+    @NotEmpty(message = "User's name cannot be empty.")
+    @Size(min = 5, max= 250)
     private String firstName;
+
+    @NotEmpty(message = "User's name cannot be empty.")
+    @Size(min = 5, max= 250)
     private String lastName;
+
+    @NotEmpty(message = "User's email cannot be empty.")
     private String username;
+
+    @NotEmpty(message = "Password cannot be empty.")
     private String password;
+
+
     private Boolean isProf;
     @OneToMany
     private List<Course> courses;
@@ -38,6 +51,8 @@ public class User {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+
 
     public String getFirstName() {
         return firstName;
