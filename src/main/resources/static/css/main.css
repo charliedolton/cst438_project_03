@@ -5,6 +5,35 @@ h1 {
     text-shadow: 2px 2px 5px #484349;
     font-family: "Audiowide", sans-serif;
 }
+test{
+    color: #18A999;
+    text-align: center;
+    text-decoration: underline;
+    text-shadow: 2px 2px 5px #484349;
+    font-family: "Audiowide", sans-serif;
+
+}
+
+body{
+    background-image: url(../img/download.png);
+    background-size: cover;
+}
+
+p{
+    border: 2px solid black;
+    outline: #4CAF50 solid 10px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #18A999;
+    text-align: center;
+    text-decoration: underline;
+    text-shadow: 2px 2px 5px #484349;
+    font-family: "Audiowide", sans-serif;
+}
 h3{
     color: #78d5d7;
     text-align: center;
