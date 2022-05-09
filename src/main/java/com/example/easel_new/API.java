@@ -26,6 +26,18 @@ public class API {
         return userRepository.findAll();
     }
 
+    @RequestMapping("/checkUser")
+    public @ResponseBody User checkUser(@RequestParam String username,
+                                        @RequestParam String password) {
+        User user = userRepository.findUserByUsername(username);
+        if (user.getPassword() == password) {
+            return user;
+        }
+        else {
+            return new User();
+        }
+    }
+
     @PostMapping("/createUser")
     public String createUser(@RequestParam String firstName,
                              @RequestParam String lastName,
