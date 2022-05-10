@@ -87,3 +87,14 @@ center{
     padding: 10px;
 }
 
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td{
+    padding: 8px;
+    text-align: left;
+    boder-bottom: 1px solid #ddd
+}
+tr:hover{background-color: #78d5d7}
+
