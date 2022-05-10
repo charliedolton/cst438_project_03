@@ -30,7 +30,7 @@ public class API {
     public @ResponseBody User checkUser(@RequestParam String username,
                                         @RequestParam String password) {
         User user = userRepository.findUserByUsername(username);
-        if (user.getPassword() == password) {
+        if (user.getPassword().equals(password)) {
             return user;
         }
         else {
