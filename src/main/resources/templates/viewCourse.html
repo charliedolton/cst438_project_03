@@ -26,7 +26,13 @@
     </tr>
 </table>
 
-<form action="/api/deleteCourse">
+<form th:if="${user.getProf()}" action="/editCourse">
+    <input type="hidden" name="courseId" th:value="${course.courseId}">
+    <input type="submit" value="Edit Course">
+</form>
+<br>
+<br>
+<form th:if="${user.getProf()}" action="/api/deleteCourse" method="post">
     <input type="hidden" name="courseId" th:value="${course.courseId}">
     <input type="submit" value="Delete Course">
 </form>

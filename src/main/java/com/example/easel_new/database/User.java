@@ -29,7 +29,7 @@ public class User {
 
 
     private Boolean isProf;
-    @OneToMany
+    @ManyToMany
     private List<Course> courses;
 
     public User() {
