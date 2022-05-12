@@ -6,6 +6,7 @@ import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,7 @@ public class API {
                              @RequestParam Boolean isProf) {
         User user = new User(firstName, lastName, username, password, isProf);
         userRepository.save(user);
-        return "redirect:/userAdded";
+        return "redirect:/login";
     }
 
     @RequestMapping("/getUserByUserId")
@@ -56,6 +57,12 @@ public class API {
         user.setPassword(password);
         userRepository.save(user);
         return "redirect:/home";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
     }
 
     //course API routes
