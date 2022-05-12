@@ -75,6 +75,9 @@ public class EaselNewApplication {
     @RequestMapping("/home")
     public String home(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         model.addAttribute("user", user);
         return "home";
     }
@@ -82,6 +85,9 @@ public class EaselNewApplication {
     @RequestMapping("/listCourses")
     public String listCourses(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         List<Course> courses = courseRepository.findAll();
         model.addAttribute("user", user);
         model.addAttribute("courses", courses);
@@ -91,6 +97,9 @@ public class EaselNewApplication {
     @RequestMapping("/createCourse")
     public String createCourse(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         if (!(user.getProf())) {
             return "/home";
         }
@@ -101,6 +110,9 @@ public class EaselNewApplication {
     @RequestMapping("/createAssignment")
     public String createAssignment(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         if (!(user.getProf())) {
             return "/home";
         }
@@ -112,6 +124,9 @@ public class EaselNewApplication {
     public String viewAssignment(Model model, HttpSession session,
                                  @RequestParam Integer assignmentId) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         Assignment assignment = assignmentRepository.findAssignmentByAssignmentId(assignmentId);
         Course course = courseRepository.findCourseByAssignmentsContains(assignment);
         model.addAttribute("user", user);
@@ -124,6 +139,9 @@ public class EaselNewApplication {
     public String viewCourse(Model model, HttpSession session,
                              @RequestParam Integer courseId) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         Course course = courseRepository.findCourseByCourseId(courseId);
         model.addAttribute("user", user);
         model.addAttribute("course", course);
@@ -133,6 +151,9 @@ public class EaselNewApplication {
     @RequestMapping("/editUser")
     public String editUser(Model model, HttpSession session) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         model.addAttribute("user", user);
         return "/editUser";
     }
@@ -141,6 +162,9 @@ public class EaselNewApplication {
     public String editCourse(Model model, HttpSession session,
                              @RequestParam Integer courseId) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         if (!(user.getProf())) {
             return "/home";
         }
@@ -153,6 +177,9 @@ public class EaselNewApplication {
     public String editAssignment(Model model, HttpSession session,
                                  @RequestParam Integer assignmentId) {
         User user = getUserFromSession(session);
+        if (user == null) {
+            return "login";
+        }
         if (!(user.getProf())) {
             return "/home";
         }
