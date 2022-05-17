@@ -13,18 +13,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer userId;
 
-    @NotEmpty(message = "User's name cannot be empty.")
-    @Size(min = 5, max= 250)
+
     private String firstName;
 
-    @NotEmpty(message = "User's name cannot be empty.")
-    @Size(min = 5, max= 250)
+
     private String lastName;
 
-    @NotEmpty(message = "User's email cannot be empty.")
+
     private String username;
 
-    @NotEmpty(message = "Password cannot be empty.")
+
     private String password;
 
 
