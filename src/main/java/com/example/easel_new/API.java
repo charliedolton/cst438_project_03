@@ -4,6 +4,7 @@ import com.example.easel_new.database.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -32,7 +33,13 @@ public class API {
                              @RequestParam String lastName,
                              @RequestParam String username,
                              @RequestParam String password,
-                             @RequestParam Boolean isProf) {
+                             @RequestParam Boolean isProf,
+                             Model model) {
+        if (userRepository.existsUserByUsername(username)) {
+            String response = "User already exists!";
+            model.addAttribute("response", response);
+            return "/signup";
+        }
         User user = new User(firstName, lastName, username, password, isProf);
         userRepository.save(user);
         return "redirect:/login";
