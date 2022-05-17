@@ -1,6 +1,9 @@
 FROM openjdk:11
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_NAME
-COPY target/*.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+
+COPY target/Easel_New-0.0.1-SNAPSHOT.jar /usr/app/
+
+WORKDIR /usr/app
+
+RUN sh -c 'touch Easel_New-0.0.1-SNAPSHOT.jar'
+
+ENTRYPOINT ["java","-jar","Easel_New-0.0.1-SNAPSHOT.jar"]
