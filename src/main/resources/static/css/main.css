@@ -90,6 +90,7 @@ center{
 table{
     border-collapse: collapse;
     width: 100%;
+    color: white;
 }
 all{
     text-align: center;
